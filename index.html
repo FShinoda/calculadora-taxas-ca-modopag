@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Taxas | Centro Acadêmico</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: #f3f5f4;
+      color: #202923;
+      padding: 32px 16px;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: auto;
+    }
+
+    header {
+      margin-bottom: 28px;
+    }
+
+    .tag {
+      color: #168354;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin: 10px 0;
+    }
+
+    .subtitle {
+      color: #69746d;
+      line-height: 1.5;
+    }
+
+    .panel, .card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 18px;
+      border: 1px solid #e4e9e5;
+    }
+
+    .label {
+      font-size: 13px;
+      color: #69746d;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .amount {
+      font-size: 36px;
+      font-weight: 750;
+      margin-bottom: 20px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: #168354;
+      cursor: pointer;
+    }
+
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      color: #89938c;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    .number-input {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      border: 1px solid #dce3de;
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+
+    .number-input span {
+      color: #69746d;
+    }
+
+    .number-input input {
+      border: none;
+      outline: none;
+      font-size: 17px;
+      width: 100%;
+      color: #202923;
+    }
+
+    h2 {
+      font-size: 19px;
+      margin: 28px 0 14px;
+    }
+
+    .card {
+      padding: 20px;
+    }
+
+    .card-header, .results {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-header {
+      margin-bottom: 20px;
+    }
+
+    .method {
+      font-weight: 700;
+      font-size: 17px;
+    }
+
+    .rate {
+      background: #edf6f0;
+      color: #168354;
+      border-radius: 20px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .result-label {
+      color: #849087;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .net {
+      color: #168354;
+      font-size: 25px;
+      font-weight: 750;
+    }
+
+    .fee {
+      color: #d45d5d;
+      font-size: 19px;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .bar {
+      height: 11px;
+      display: flex;
+      background: #e7ece8;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 18px 0 9px;
+    }
+
+    .received {
+      background: #168354;
+    }
+
+    .deducted {
+      background: #e47777;
+    }
+
+    .bar-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #89938c;
+    }
+
+    .footer {
+      color: #89938c;
+      font-size: 12px;
+      line-height: 1.6;
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 22px 12px; }
+      h1 { font-size: 25px; }
+      .panel, .card { padding: 18px; }
+      .net { font-size: 21px; }
+      .fee { font-size: 17px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <header>
+      <div class="tag">Centro Acadêmico</div>
+      <h1>Calculadora de taxas</h1>
+      <p class="subtitle">
+        Simule quanto o CA recebe após os descontos
+        da maquininha Modo Mini.
+      </p>
+    </header>
+
+    <section class="panel">
+      <div class="label">VALOR COBRADO DO CLIENTE</div>
+      <div class="amount" id="amountDisplay">R$ 100,00</div>
+
+      <input
+        type="range"
+        id="slider"
+        min="0"
+        max="1000"
+        step="0.01"
+        value="100"
+      >
+
+      <div class="range-labels">
+        <span>R$ 0</span>
+        <span>R$ 1.000</span>
+      </div>
+
+      <div class="number-input">
+        <span>R$</span>
+        <input
+          type="number"
+          id="numberInput"
+          min="0"
+          max="1000"
+          step="0.01"
+          value="100"
+        >
+      </div>
+    </section>
+
+    <h2>Comparativo por modalidade</h2>
+
+    <div id="results"></div>
+
+    <p class="footer">
+      Taxas utilizadas conforme os valores informados do plano Start:
+      Pix 0,30% · Débito 0,89% · Crédito à vista 2,89% ·
+      Crédito em 12x 10,42%. Valores simulados e arredondados
+      para centavos. Consulte as condições vigentes da operadora.
+    </p>
+  </main>
+
+  <script>
+    const methods = [
+      { name: "Pix", rate: 0.30 },
+      { name: "Débito", rate: 0.89 },
+      { name: "Crédito à vista", rate: 2.89 },
+      { name: "Crédito em 12x", rate: 10.42 }
+    ];
+
+    const slider = document.getElementById("slider");
+    const numberInput = document.getElementById("numberInput");
+    const amountDisplay = document.getElementById("amountDisplay");
+    const results = document.getElementById("results");
+
+    const money = value =>
+      value.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+
+    function calculate(value) {
+      const amount = Math.round(value * 100) / 100;
+
+      amountDisplay.textContent = money(amount);
+
+      results.innerHTML = "";
+
+      methods.forEach(method => {
+        const fee = Math.round(amount * method.rate) / 100;
+        const received = Math.round((amount - fee) * 100) / 100;
+        const netPercentage = 100 - method.rate;
+
+        const card = document.createElement("section");
+        card.className = "card";
+
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="method">${method.name}</div>
+            <div class="rate">
+              ${method.rate.toFixed(2).replace(".", ",")}%
+            </div>
+          </div>
+
+          <div class="results">
+            <div>
+              <div class="result-label">Você recebe</div>
+              <div class="net">${money(received)}</div>
+            </div>
+
+            <div>
+              <div class="result-label">Taxa consumida</div>
+              <div class="fee">${money(fee)}</div>
+            </div>
+          </div>
+
+          <div class="bar">
+            <div class="received"
+              style="width: ${netPercentage}%"></div>
+            <div class="deducted"
+              style="width: ${method.rate}%"></div>
+          </div>
+
+          <div class="bar-labels">
+            <span>Valor líquido: ${netPercentage.toFixed(2).replace(".", ",")}%</span>
+            <span>Taxa: ${method.rate.toFixed(2).replace(".", ",")}%</span>
+          </div>
+        `;
+
+        results.appendChild(card);
+      });
+    }
+
+    function update(value) {
+      value = Math.min(1000, Math.max(0, Number(value) || 0));
+      slider.value = value;
+      numberInput.value = value;
+      calculate(value);
+    }
+
+    slider.addEventListener("input", () => {
+      update(slider.value);
+    });
+
+    numberInput.addEventListener("input", () => {
+      if (numberInput.value === "") return;
+      update(numberInput.value);
+    });
+
+    numberInput.addEventListener("change", () => {
+      update(numberInput.value);
+    });
+
+    calculate(100);
+  </script>
+</body>
+</html>
