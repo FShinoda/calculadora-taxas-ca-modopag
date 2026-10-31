@@ -21,7 +21,7 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 680px;
   margin: auto;
 }
 
@@ -48,12 +48,12 @@ h1 {
   line-height: 1.5;
 }
 
-.panel {
+.panel, .result {
   background: white;
   border: 1px solid #e3e9e4;
   border-radius: 15px;
   padding: 23px;
-  margin-bottom: 18px;
+  margin-bottom: 17px;
 }
 
 label {
@@ -100,16 +100,8 @@ input[type="number"], select {
 }
 
 h2 {
-  font-size: 18px;
+  font-size: 19px;
   margin-bottom: 15px;
-}
-
-.result {
-  background: white;
-  border: 1px solid #e3e9e4;
-  border-radius: 15px;
-  padding: 22px;
-  margin-bottom: 14px;
 }
 
 .result-header {
@@ -117,6 +109,7 @@ h2 {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 22px;
+  gap: 10px;
 }
 
 .method {
@@ -129,7 +122,7 @@ h2 {
   background: #edf6f0;
   padding: 7px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: bold;
 }
 
@@ -182,14 +175,41 @@ h2 {
   font-size: 11px;
 }
 
-.not-informed {
-  color: #8a7550;
-  background: #fff8e8;
-  border: 1px solid #f0e5bd;
-  padding: 15px;
-  border-radius: 10px;
-  font-size: 13px;
-  line-height: 1.5;
+.table-container {
+  overflow-x: auto;
+  background: white;
+  border: 1px solid #e3e9e4;
+  border-radius: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 450px;
+}
+
+th, td {
+  padding: 17px 14px;
+  text-align: center;
+  border-bottom: 1px solid #edf0ed;
+  font-size: 14px;
+}
+
+th {
+  background: #f7f9f7;
+  color: #69766e;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+td:first-child, th:first-child {
+  text-align: left;
+  font-weight: bold;
+}
+
+tr:last-child td {
+  border-bottom: none;
 }
 
 footer {
@@ -197,7 +217,7 @@ footer {
   text-align: center;
   font-size: 11px;
   line-height: 1.6;
-  margin-top: 25px;
+  margin-top: 28px;
 }
 
 @media(max-width: 450px) {
@@ -212,6 +232,10 @@ footer {
   .fee-value {
     font-size: 17px;
   }
+
+  h1 {
+    font-size: 25px;
+  }
 }
 </style>
 </head>
@@ -223,8 +247,8 @@ footer {
   <div class="tag">Centro Acadêmico</div>
   <h1>Calculadora de taxas</h1>
   <p class="subtitle">
-    Descubra quanto o CA recebe após as taxas da
-    maquininha Modo Mini.
+    Simule quanto o CA recebe após os descontos
+    da maquininha Modo Mini.
   </p>
 </header>
 
@@ -274,35 +298,75 @@ footer {
 
 <div id="results"></div>
 
+<section style="margin-top:32px">
+  <h2>Visão geral das taxas</h2>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Modalidade</th>
+          <th>Visa / Mastercard</th>
+          <th>Elo / Amex / Hiper / Outras</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Débito</td>
+          <td>1,55%</td>
+          <td>3,05%</td>
+        </tr>
+
+        <tr>
+          <td>Crédito à vista</td>
+          <td>3,15%</td>
+          <td>6,05%</td>
+        </tr>
+
+        <tr>
+          <td>Crédito 2x</td>
+          <td>5,83%</td>
+          <td>7,23%</td>
+        </tr>
+
+        <tr>
+          <td>Crédito 3x</td>
+          <td>6,64%</td>
+          <td>8,04%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size:12px;color:#89938c;line-height:1.5;margin-top:12px">
+    Fonte: tabela comercial da ModoPAG apresentada para consulta.
+    As taxas podem variar conforme plano, faturamento e condições comerciais.
+  </p>
+</section>
+
 <footer>
-  Taxas conforme tabela comercial apresentada.<br>
+  Calculadora de uso interno do Centro Acadêmico.<br>
+  Valores estimados e arredondados para centavos.
 </footer>
 
 </main>
 
 <script>
 const taxas = {
-  debit: {
-    nome: "Débito",
-    visa: 1.55,
-    other: 3.05
-  },
-  credit1: {
-    nome: "Crédito à vista",
-    visa: 3.15,
-    other: 6.05
-  },
-  credit2: {
-    nome: "Crédito 2x",
-    visa: 5.83,
-    other: 7.23
-  },
-  credit3: {
-    nome: "Crédito 3x",
-    visa: 6.64,
-    : 8.04,
-    other: 8.04
-  }
+  visa: [
+    { nome: "Débito", taxa: 1.55 },
+    { nome: "Crédito à vista", taxa: 3.15 },
+    { nome: "Crédito 2x", taxa: 5.83 },
+    { nome: "Crédito 3x", taxa: 6.64 }
+  ],
+
+  other: [
+    { nome: "Débito", taxa: 3.05 },
+    { nome: "Crédito à vista", taxa: 6.05 },
+    { nome: "Crédito 2x", taxa: 7.23 },
+    { nome: "Crédito 3x", taxa: 8.04 }
+  ]
 };
 
 const slider = document.getElementById("slider");
@@ -326,60 +390,46 @@ function calculate() {
 
   results.innerHTML = "";
 
-  Object.values(taxas).forEach(method => {
-    const rate = method[selectedBrand];
+  taxas[selectedBrand].forEach(method => {
+    const fee = Math.round(amount * method.taxa) / 100;
+    const received = Math.round((amount - fee) * 100) / 100;
+    const netPercentage = 100 - method.taxa;
+
     const card = document.createElement("section");
     card.className = "result";
 
-    if (rate === null) {
-      card.innerHTML = `
-        <div class="result-header">
-          <div class="method">${method.nome}</div>
-          <div class="rate">Não informado</div>
+    card.innerHTML = `
+      <div class="result-header">
+        <div class="method">${method.nome}</div>
+        <div class="rate">
+          ${method.taxa.toFixed(2).replace(".", ",")}%
         </div>
-        <div class="not-informed">
-          A taxa desta modalidade não consta na tabela
-          comercial disponível. Não é possível calcular
-          o valor líquido sem essa informação.
-        </div>
-      `;
-    } else {
-      const fee = Math.round(amount * rate) / 100;
-      const received = Math.round((amount - fee) * 100) / 100;
+      </div>
 
-      card.innerHTML = `
-        <div class="result-header">
-          <div class="method">${method.nome}</div>
-          <div class="rate">
-            ${rate.toFixed(2).replace(".", ",")}%
-          </div>
+      <div class="values">
+        <div>
+          <div class="caption">Valor recebido</div>
+          <div class="received-value">${money(received)}</div>
         </div>
 
-        <div class="values">
-          <div>
-            <div class="caption">Valor recebido</div>
-            <div class="received-value">${money(received)}</div>
-          </div>
-
-          <div>
-            <div class="caption">Taxa descontada</div>
-            <div class="fee-value">${money(fee)}</div>
-          </div>
+        <div>
+          <div class="caption">Taxa descontada</div>
+          <div class="fee-value">${money(fee)}</div>
         </div>
+      </div>
 
-        <div class="bar">
-          <div class="received-bar"
-            style="width:${100-rate}%"></div>
-          <div class="fee-bar"
-            style="width:${rate}%"></div>
-        </div>
+      <div class="bar">
+        <div class="received-bar"
+          style="width:${netPercentage}%"></div>
+        <div class="fee-bar"
+          style="width:${method.taxa}%"></div>
+      </div>
 
-        <div class="bar-labels">
-          <span>Recebido: ${(100-rate).toFixed(2).replace(".", ",")}%</span>
-          <span>Desconto: ${rate.toFixed(2).replace(".", ",")}%</span>
-        </div>
-      `;
-    }
+      <div class="bar-labels">
+        <span>Recebido: ${netPercentage.toFixed(2).replace(".", ",")}%</span>
+        <span>Desconto: ${method.taxa.toFixed(2).replace(".", ",")}%</span>
+      </div>
+    `;
 
     results.appendChild(card);
   });
@@ -388,9 +438,11 @@ function calculate() {
 slider.addEventListener("input", calculate);
 
 amountInput.addEventListener("input", () => {
+  if (amountInput.value === "") return;
+
   let value = Number(amountInput.value);
 
-  if (amountInput.value === "" || !Number.isFinite(value)) return;
+  if (!Number.isFinite(value)) return;
 
   value = Math.max(0, Math.min(1000, value));
   slider.value = value;
