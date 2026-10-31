@@ -7,183 +7,173 @@
 <title>Calculadora de Taxas | Centro Acadêmico</title>
 
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: Inter, Arial, sans-serif;
-  background: #f3f5f4;
-  color: #202923;
-  padding: 28px 15px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.container { max-width: 850px; margin: auto; }
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f5f4;
+  color: #26332b;
+  padding: 30px 16px;
+}
 
-header { margin-bottom: 25px; }
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+
+header {
+  margin-bottom: 25px;
+}
 
 .tag {
   color: #168354;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: bold;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
-h1 { font-size: 29px; margin: 9px 0; }
-h2 { font-size: 19px; margin-bottom: 16px; }
-
-.subtitle {
-  color: #69746d;
-  line-height: 1.5;
-  font-size: 14px;
+h1 {
+  font-size: 28px;
+  margin: 10px 0;
 }
 
-.panel, .card {
+.subtitle {
+  color: #738078;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.panel {
   background: white;
   border: 1px solid #e3e9e4;
   border-radius: 15px;
-  padding: 22px;
-  margin-bottom: 17px;
+  padding: 23px;
+  margin-bottom: 18px;
 }
 
-.section { margin-top: 27px; }
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-}
-
-.field label {
+label {
   display: block;
   font-size: 12px;
-  color: #69746d;
-  font-weight: 650;
-  margin-bottom: 7px;
-}
-
-input, select {
-  width: 100%;
-  padding: 11px;
-  border: 1px solid #dce3de;
-  border-radius: 9px;
-  font-size: 14px;
-  background: white;
-  color: #202923;
+  font-weight: bold;
+  color: #69766e;
+  margin-bottom: 9px;
 }
 
 .amount {
-  font-size: 36px;
-  font-weight: 750;
-  margin: 8px 0 18px;
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 18px;
 }
 
 input[type="range"] {
-  padding: 0;
+  width: 100%;
   accent-color: #168354;
-  border: none;
   cursor: pointer;
 }
 
 .range-labels {
   display: flex;
   justify-content: space-between;
+  color: #929b94;
   font-size: 11px;
-  color: #89938c;
-  margin-top: 6px;
+  margin-top: 7px;
 }
 
-.rate-table {
+input[type="number"], select {
   width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-  min-width: 540px;
+  padding: 13px;
+  border: 1px solid #dce3de;
+  border-radius: 9px;
+  font-size: 15px;
+  background: white;
+  color: #26332b;
+  outline-color: #168354;
 }
 
-.rate-table th, .rate-table td {
-  padding: 10px 8px;
-  border-bottom: 1px solid #edf0ed;
-  text-align: center;
+.field {
+  margin-top: 20px;
 }
 
-.rate-table th {
-  color: #69746d;
-  font-size: 11px;
-  background: #f7f9f7;
+h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
 }
 
-.rate-table td:first-child, .rate-table th:first-child {
-  text-align: left;
-  font-weight: 650;
+.result {
+  background: white;
+  border: 1px solid #e3e9e4;
+  border-radius: 15px;
+  padding: 22px;
+  margin-bottom: 14px;
 }
 
-.rate-table input {
-  width: 78px;
-  padding: 8px 5px;
-  text-align: center;
-  font-size: 13px;
-}
-
-.table-wrap { overflow-x: auto; }
-
-.hint {
-  color: #7c877f;
-  font-size: 12px;
-  line-height: 1.5;
-  margin-top: 12px;
-}
-
-.rate-editor { border: 1px solid #e3e9e4; }
-
-.card-header, .results {
+.result-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  margin-bottom: 22px;
 }
 
-.card-header { margin-bottom: 19px; }
-
-.method { font-size: 16px; font-weight: 700; }
+.method {
+  font-size: 17px;
+  font-weight: bold;
+}
 
 .rate {
+  color: #168354;
   background: #edf6f0;
-  color: #168354;
+  padding: 7px 12px;
   border-radius: 20px;
-  padding: 6px 11px;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: bold;
 }
 
-.result-label {
-  font-size: 12px;
-  color: #849087;
-  margin-bottom: 5px;
+.values {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.net {
-  font-size: 25px;
+.caption {
+  color: #89938c;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.received-value {
   color: #168354;
-  font-weight: 750;
+  font-size: 25px;
+  font-weight: bold;
 }
 
-.fee {
-  font-size: 19px;
+.fee-value {
   color: #d45d5d;
-  font-weight: 700;
+  font-size: 19px;
+  font-weight: bold;
   text-align: right;
 }
 
 .bar {
   display: flex;
   height: 11px;
-  background: #e7ece8;
   border-radius: 20px;
   overflow: hidden;
-  margin: 17px 0 8px;
+  margin: 20px 0 9px;
+  background: #e7ece8;
 }
 
-.received { background: #168354; }
-.deducted { background: #e47777; }
+.received-bar {
+  background: #168354;
+}
+
+.fee-bar {
+  background: #e47777;
+}
 
 .bar-labels {
   display: flex;
@@ -192,42 +182,36 @@ input[type="range"] {
   font-size: 11px;
 }
 
-.notice {
-  background: #fff9e8;
+.not-informed {
+  color: #8a7550;
+  background: #fff8e8;
   border: 1px solid #f0e5bd;
-  padding: 13px;
+  padding: 15px;
   border-radius: 10px;
-  font-size: 12px;
-  color: #77602c;
+  font-size: 13px;
   line-height: 1.5;
-  margin-top: 15px;
 }
-
-button {
-  padding: 10px 14px;
-  border: 1px solid #dce3de;
-  border-radius: 9px;
-  background: white;
-  cursor: pointer;
-  font-weight: 600;
-  color: #344139;
-}
-
-button:hover { background: #edf6f0; }
 
 footer {
+  color: #929b94;
   text-align: center;
-  color: #89938c;
   font-size: 11px;
   line-height: 1.6;
-  margin: 25px 0;
+  margin-top: 25px;
 }
 
-@media(max-width: 550px) {
-  .grid { grid-template-columns: 1fr; }
-  h1 { font-size: 25px; }
-  .panel, .card { padding: 16px; }
-  .net { font-size: 21px; }
+@media(max-width: 450px) {
+  .panel, .result {
+    padding: 17px;
+  }
+
+  .received-value {
+    font-size: 21px;
+  }
+
+  .fee-value {
+    font-size: 17px;
+  }
 }
 </style>
 </head>
@@ -239,271 +223,221 @@ footer {
   <div class="tag">Centro Acadêmico</div>
   <h1>Calculadora de taxas</h1>
   <p class="subtitle">
-    Simule os recebimentos da maquininha e compare
-    o impacto das taxas sobre as vendas.
+    Descubra quanto o CA recebe após as taxas da
+    maquininha Modo Mini.
   </p>
 </header>
 
-<!-- CONFIGURAÇÃO -->
 <section class="panel">
-  <h2>Configuração da proposta</h2>
 
-  <div class="grid">
-    <div class="field">
-      <label>Plano contratado</label>
-      <input id="plan" value="Start" placeholder="Ex.: Start, Pro...">
-    </div>
+  <label>VALOR DA VENDA</label>
 
-    <div class="field">
-      <label>Faturamento mensal estimado (R$)</label>
-      <input id="volume" type="number" min="0"
-        placeholder="Ex.: 2000">
-    </div>
-  </div>
+  <div class="amount" id="display">R$ 100,00</div>
 
-  <p class="hint">
-    O faturamento é apenas informativo. As taxas precisam ser
-    atualizadas conforme a proposta correspondente à faixa de vendas.
-    A calculadora não presume descontos automáticos por volume.
-  </p>
-</section>
-
-<!-- VALOR -->
-<section class="panel">
-  <div class="field">
-    <label>VALOR COBRADO DO CLIENTE</label>
-  </div>
-
-  <div class="amount" id="amountDisplay">R$ 100,00</div>
-
-  <input type="range" id="slider"
-    min="0" max="1000" step="0.01" value="100">
+  <input
+    type="range"
+    id="slider"
+    min="0"
+    max="1000"
+    step="0.01"
+    value="100"
+  >
 
   <div class="range-labels">
     <span>R$ 0</span>
     <span>R$ 1.000</span>
   </div>
 
-  <div class="field" style="margin-top:17px">
-    <label>Digite outro valor</label>
-    <input type="number" id="amountInput"
-      min="0" max="1000" step="0.01" value="100">
+  <div class="field">
+    <label>Ou digite o valor desejado</label>
+    <input
+      type="number"
+      id="amount"
+      min="0"
+      max="1000"
+      step="0.01"
+      value="100"
+    >
   </div>
+
+  <div class="field">
+    <label>BANDEIRA DO CARTÃO</label>
+    <select id="brand">
+      <option value="visa">Visa / Mastercard</option>
+      <option value="elo">Elo</option>
+      <option value="other">Amex / Hiper / Outras</option>
+    </select>
+  </div>
+
 </section>
 
-<!-- BANDEIRA -->
-<section class="section">
-  <h2>1. Escolha a bandeira</h2>
+<h2>Resultado por modalidade</h2>
 
-  <section class="panel">
-    <div class="field">
-      <select id="brand">
-        <option value="visa">Visa / Mastercard</option>
-        <option value="elo">Elo</option>
-        <option value="other">Amex / Hiper / Outras</option>
-      </select>
-    </div>
-  </section>
-</section>
-
-<!-- TAXAS EDITÁVEIS -->
-<section class="section">
-  <h2>2. Configurar taxas da operadora</h2>
-
-  <section class="panel rate-editor">
-    <div class="table-wrap">
-      <table class="rate-table">
-        <thead>
-          <tr>
-            <th>Modalidade</th>
-            <th>Visa / Master</th>
-            <th>Elo</th>
-            <th>Amex / Hiper / Outras</th>
-          </tr>
-        </thead>
-        <tbody id="rateTable"></tbody>
-      </table>
-    </div>
-
-    <div class="notice">
-      <strong>Atenção:</strong> os valores iniciais de débito,
-      crédito à vista e crédito 2x foram retirados da tabela
-      apresentada. As demais parcelas estão sem taxa cadastrada.
-      Confirme os valores com a operadora antes de utilizar.
-    </div>
-
-    <p class="hint">
-      Edite os percentuais diretamente na tabela. As alterações
-      ficam salvas neste navegador.
-    </p>
-
-    <button id="resetRates" style="margin-top:12px">
-      Restaurar taxas iniciais
-    </button>
-  </section>
-</section>
-
-<!-- RESULTADO -->
-<section class="section">
-  <h2>3. Resultado da simulação</h2>
-  <div id="results"></div>
-</section>
+<div id="results"></div>
 
 <footer>
-  Simulação financeira do Centro Acadêmico.<br>
-  Os resultados são estimativas, sujeitos às condições
-  comerciais e regras de arredondamento da operadora.
+  Taxas conforme tabela comercial apresentada.<br>
+  Crédito em 3x ou mais: taxas não informadas.<br>
+  Os cálculos são estimativas e podem variar conforme
+  as condições comerciais da operadora.
 </footer>
 
 </main>
 
 <script>
-const brands = [
-  {id:"visa", name:"Visa / Mastercard"},
-  {id:"elo", name:"Elo"},
-  {id:"other", name:"Amex / Hiper / Outras"}
-];
-
-const methods = [
-  {id:"debit", name:"Débito"},
-  {id:"credit1", name:"Crédito à vista"},
-  {id:"credit2", name:"Crédito 2x"},
-  ...Array.from({length:10}, (_,i) => ({
-    id:"credit"+(i+3),
-    name:"Crédito "+(i+3)+"x"
-  }))
-];
-
-const initialRates = {
-  debit:   {visa:1.55, elo:3.05, other:3.05},
-  credit1: {visa:3.15, elo:6.05, other:6.05},
-  credit2: {visa:5.83, elo:7.23, other:7.23},
-  credit3: {visa:null, elo:null, other:null},
-  credit4: {visa:null, elo:null, other:null},
-  credit5: {visa:null, elo:null, other:null},
-  credit6: {visa:null, elo:null, other:null},
-  credit7: {visa:null, elo:null, other:null},
-  credit8: {visa:null, elo:null, other:null},
-  credit9: {visa:null, elo:null, other:null},
-  credit10:{visa:null, elo:null, other:null},
-  credit11:{visa:null, elo:null, other:null},
-  credit12:{visa:null, elo:null, other:null}
+const taxas = {
+  debit: {
+    nome: "Débito",
+    visa: 1.55,
+    elo: 3.05,
+    other: 3.05
+  },
+  credit1: {
+    nome: "Crédito à vista",
+    visa: 3.15,
+    elo: 6.05,
+    other: 6.05
+  },
+  credit2: {
+    nome: "Crédito 2x",
+    visa: 5.83,
+    elo: 7.23,
+    other: 7.23
+  },
+  credit3: {
+    nome: "Crédito 3x",
+    visa: null,
+    elo: null,
+    other: null
+  },
+  credit4: {
+    nome: "Crédito 4x",
+    visa: null,
+    elo: null,
+    other: null
+  },
+  credit5: {
+    nome: "Crédito 5x",
+    visa: null,
+    elo: null,
+    other: null
+  },
+  credit6: {
+    nome: "Crédito 6x",
+    visa: null,
+    elo: null,
+    other: null
+  },
+  credit7: {
+    nome: "Crédito 7x",
+    visa: null,
+    elo: null,
+    other: null
+  },
+  credit8: {
+    nome: "Crédito 8x",
+    visa: null,
+    elo: null,
+    other: null
+  },
+  credit9: {
+    nome: "Crédito 9x",
+    visa: null,
+    elo: null,
+    other: null
+  },
+  credit10: {
+    nome: "Crédito 10x",
+    visa: null,
+    elo: null,
+    other: null
+  },
+  credit11: {
+    nome: "Crédito 11x",
+    visa: null,
+    elo: null,
+    other: null
+  },
+  credit12: {
+    nome: "Crédito 12x",
+    visa: null,
+    elo: null,
+    other: null
+  }
 };
 
-let rates = loadRates();
-let amount = 100;
+const slider = document.getElementById("slider");
+const amountInput = document.getElementById("amount");
+const display = document.getElementById("display");
+const brand = document.getElementById("brand");
+const results = document.getElementById("results");
 
-function loadRates() {
-  try {
-    const saved = localStorage.getItem("caRates");
-    return saved ? {...structuredClone(initialRates),
-      ...JSON.parse(saved)} : structuredClone(initialRates);
-  } catch {
-    return structuredClone(initialRates);
-  }
-}
-
-function saveRates() {
-  localStorage.setItem("caRates", JSON.stringify(rates));
-}
-
-const money = n => n.toLocaleString("pt-BR", {
-  style:"currency", currency:"BRL"
-});
-
-function renderTable() {
-  const tbody = document.getElementById("rateTable");
-  tbody.innerHTML = "";
-
-  methods.forEach(method => {
-    const row = document.createElement("tr");
-
-    row.innerHTML = `<td>${method.name}</td>`;
-
-    brands.forEach(brand => {
-      const value = rates[method.id]?.[brand.id];
-      const td = document.createElement("td");
-
-      const input = document.createElement("input");
-      input.type = "number";
-      input.min = "0";
-      input.max = "100";
-      input.step = "0.01";
-      input.placeholder = "Não definida";
-      input.value = value ?? "";
-
-      input.addEventListener("input", () => {
-        const n = input.value === "" ? null : Number(input.value);
-
-        if (n !== null && (!Number.isFinite(n) || n < 0 || n > 100)) {
-          return;
-        }
-
-        rates[method.id][brand.id] = n;
-        saveRates();
-        renderResults();
-      });
-
-      td.appendChild(input);
-      row.appendChild(td);
-    });
-
-    tbody.appendChild(row);
+const money = value =>
+  value.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
   });
-}
 
-function renderResults() {
-  const brand = document.getElementById("brand").value;
-  const results = document.getElementById("results");
+function calculate() {
+  const amount = Number(slider.value);
+  const selectedBrand = brand.value;
+
+  display.textContent = money(amount);
+  amountInput.value = amount;
+
   results.innerHTML = "";
 
-  methods.forEach(method => {
-    const rate = rates[method.id]?.[brand];
-
+  Object.values(taxas).forEach(method => {
+    const rate = method[selectedBrand];
     const card = document.createElement("section");
-    card.className = "card";
+    card.className = "result";
 
-    if (rate === null || rate === undefined || rate === "") {
+    if (rate === null) {
       card.innerHTML = `
-        <div class="card-header">
-          <div class="method">${method.name}</div>
-          <div class="rate">Taxa não cadastrada</div>
+        <div class="result-header">
+          <div class="method">${method.nome}</div>
+          <div class="rate">Não informado</div>
         </div>
-        <p class="hint">
-          Informe a taxa desta modalidade na tabela acima
-          para visualizar a simulação.
-        </p>
+        <div class="not-informed">
+          A taxa desta modalidade não consta na tabela
+          comercial disponível. Não é possível calcular
+          o valor líquido sem essa informação.
+        </div>
       `;
     } else {
       const fee = Math.round(amount * rate) / 100;
       const received = Math.round((amount - fee) * 100) / 100;
-      const netPercentage = 100 - rate;
 
       card.innerHTML = `
-        <div class="card-header">
-          <div class="method">${method.name}</div>
-          <div class="rate">${rate.toFixed(2).replace(".",",")}%</div>
+        <div class="result-header">
+          <div class="method">${method.nome}</div>
+          <div class="rate">
+            ${rate.toFixed(2).replace(".", ",")}%
+          </div>
         </div>
 
-        <div class="results">
+        <div class="values">
           <div>
-            <div class="result-label">Você recebe</div>
-            <div class="net">${money(received)}</div>
+            <div class="caption">Valor recebido</div>
+            <div class="received-value">${money(received)}</div>
           </div>
+
           <div>
-            <div class="result-label">Taxa consumida</div>
-            <div class="fee">${money(fee)}</div>
+            <div class="caption">Taxa descontada</div>
+            <div class="fee-value">${money(fee)}</div>
           </div>
         </div>
 
         <div class="bar">
-          <div class="received" style="width:${netPercentage}%"></div>
-          <div class="deducted" style="width:${rate}%"></div>
+          <div class="received-bar"
+            style="width:${100-rate}%"></div>
+          <div class="fee-bar"
+            style="width:${rate}%"></div>
         </div>
 
         <div class="bar-labels">
-          <span>Valor líquido: ${netPercentage.toFixed(2).replace(".",",")}%</span>
-          <span>Taxa: ${rate.toFixed(2).replace(".",",")}%</span>
+          <span>Recebido: ${(100-rate).toFixed(2).replace(".", ",")}%</span>
+          <span>Desconto: ${rate.toFixed(2).replace(".", ",")}%</span>
         </div>
       `;
     }
@@ -512,38 +446,28 @@ function renderResults() {
   });
 }
 
-function updateAmount(value) {
-  if (value === "" || !Number.isFinite(Number(value))) return;
+slider.addEventListener("input", calculate);
 
-  amount = Math.min(1000, Math.max(0, Number(value)));
-  document.getElementById("slider").value = amount;
-  document.getElementById("amountInput").value = amount;
-  document.getElementById("amountDisplay").textContent = money(amount);
+amountInput.addEventListener("input", () => {
+  let value = Number(amountInput.value);
 
-  renderResults();
-}
+  if (amountInput.value === "" || !Number.isFinite(value)) return;
 
-document.getElementById("slider").addEventListener("input", e => {
-  updateAmount(e.target.value);
+  value = Math.max(0, Math.min(1000, value));
+  slider.value = value;
+  calculate();
 });
 
-document.getElementById("amountInput").addEventListener("input", e => {
-  updateAmount(e.target.value);
+amountInput.addEventListener("change", () => {
+  let value = Number(amountInput.value);
+  value = Math.max(0, Math.min(1000, value));
+  slider.value = value;
+  calculate();
 });
 
-document.getElementById("brand").addEventListener("change", renderResults);
+brand.addEventListener("change", calculate);
 
-document.getElementById("resetRates").addEventListener("click", () => {
-  if (!confirm("Deseja restaurar as taxas iniciais?")) return;
-
-  rates = structuredClone(initialRates);
-  saveRates();
-  renderTable();
-  renderResults();
-});
-
-renderTable();
-updateAmount(100);
+calculate();
 </script>
 
 </body>
